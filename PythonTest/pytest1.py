@@ -5,6 +5,8 @@ Time：2023/2/9 17:09
 Project：python学习
 =====================
 """
+import logging
+
 from PythonTest.pytest2 import Test
 
 # print("python学习！")
@@ -201,6 +203,7 @@ pai_xu = [23, 53, 13, 232, 42, 1214, 24]
 
 tt = Test()
 tt.test_name("牛肉")
+logging.info("...")
 tt.my_eat
 
 # --------------------------
