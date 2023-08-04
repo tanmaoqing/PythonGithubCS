@@ -9,9 +9,12 @@ import time
 
 from appium.webdriver import Remote
 from appium.webdriver.common.appiumby import AppiumBy
+from appium.webdriver.common.multi_action import MultiAction
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import ui
+
+from PytestAndFixtrue.pressed import Test
 
 caps = {
     'platformName': 'Android',  # 平台
@@ -137,7 +140,31 @@ def unlock():
         **position_5).move_to(**position_7).move_to(**position_8).move_to(
         **position_9).release().perform()
 
-    time.sleep(3)
+    # touch.press(x=start_x + width * 1 / 6, y=start_y + height * 1 / 6).move_to(x=start_x + width * 1 / 2, y=start_y + height * 1 / 6).move_to(
+    #     x=start_x + width * 5 / 6, y=start_y + height * 1 / 6).release().perform()
+
+    time.sleep(1)
+
+
+# 根据keycode实现对按键的控制
+# https://www.jianshu.com/p/f7ec856ff56f
+def pressed13():
+    driver.press_keycode(4)
+
+
+# 多点触控 放大缩小屏幕
+def ddck():
+    fd = TouchAction(driver)
+    fd1 = TouchAction(driver)
+    action = driver.get_window_size()
+    width = action['width']
+    height = action['height']
+
+    fd.press(x=width / 2, y=height / 2).move_to(x=width / 2, y=height * 2).release()
+    fd1.press(x=width / 2, y=height / 2).move_to(x=width / 2, y=height * 0.125).release()
+    m = MultiAction(driver)
+    m.add(fd, fd1)
+    m.perform()
 
 
 def test_evaluation():
@@ -151,6 +178,12 @@ def test_evaluation():
     # print("界面名:{}".format(driver.current_activity))
     # driver.start_activity('com.eagersoft.youzy.youzy', '.mvvm.ui.main.Main') # 跳转其他应用
     # install()  # 如果存在app删除，不存在则安装
-    unlock()  # 手机屏幕九宫格解锁
+    # unlock()  # 手机屏幕九宫格解锁
+    # pressed()  # 根据keycode实现对按键的控制
+
+    # tt = Test()
+    # driver.press_keycode(tt.my_name) # 调用工具类变量
+
+    ddck()  # 多点触控 放大缩小屏幕
 
     # driver.quit()
