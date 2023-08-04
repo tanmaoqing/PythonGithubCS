@@ -186,4 +186,4 @@ def test_evaluation():
 
     ddck()  # 多点触控 放大缩小屏幕
 
-    # driver.quit()
+    driver.quit()
