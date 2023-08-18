@@ -7,6 +7,7 @@ Project：python学习
 """
 import time
 
+import pytest
 from appium.webdriver import Remote
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.webdriver.common.multi_action import MultiAction
@@ -185,5 +186,5 @@ def test_evaluation():
     # driver.press_keycode(tt.my_name) # 调用工具类变量
 
     ddck()  # 多点触控 放大缩小屏幕
-
+    pytest.main([r'--alluredir=test_report'])
     driver.quit()
